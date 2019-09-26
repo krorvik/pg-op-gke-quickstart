@@ -6,7 +6,7 @@ WARNING: Some configuration must be performed to get this going. See minimal man
 
 Reference: https://github.com/zalando/postgres-operator
 
-You need a google account, and a related billing account set up for Google Cloud (which is out of scope here)
+You need a google account, and a related billing account set up for Google Cloud (which is out of scope here). The code below will incur some cost, but no more than a sixpack will as long as you remember tearing things down.
 
 # Steps
 
@@ -96,6 +96,14 @@ postgres@acid-minimal-cluster-0:~$ patronictl list
 | acid-minimal-cluster | acid-minimal-cluster-0 | 10.12.2.5 | Leader |     running      |  1 |         0 |
 | acid-minimal-cluster | acid-minimal-cluster-1 | 10.12.2.6 |        |     running      |    |         0 |
 +----------------------+------------------------+-----------+--------+------------------+----+-----------+
+```
+
+# Tear down
+
+```console
+$ gcloud -q container clusters delete pgcluster
+$ gsutil rm -rf gs://finnpoc
+
 ```
 
 # Needed manifest diff to get things running
