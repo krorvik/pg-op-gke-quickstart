@@ -6,6 +6,8 @@ WARNING: Some configuration must be performed to get this going. See minimal man
 
 Reference: https://github.com/zalando/postgres-operator
 
+You need a google account, and a related billing account set up for Google Cloud (which is out of scope here)
+
 # Steps
 
 ```console
