@@ -12,6 +12,10 @@ WARNING: Some configuration must be performed to get this going. See minimal man
 $ git clone https://github.com/zalando/postgres-operator
 $ cd postgres-operator/manifests
 
+###
+###  AT THIS POINT; apply config diff below. And consider changing the project name in the code below. 
+###
+
 # Setup project in GKE
 
 $ gcloud auth login  # (Pulls up browser)
