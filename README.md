@@ -1,6 +1,6 @@
 # Scope
 
-This is a simple rundown of all the steps to get a postgres cluster up in GKE, in the default namespace. It is intended as a POC.
+This is a simple rundown of all the steps to get a zalando/postgres-operator cluster up in GKE, in the default namespace, with basebackups/WAL archiving in GCS. It is intended as a POC.
 
 WARNING: Some configuration must be performed to get this going. See minimal manifest diff that should work below. 
 
