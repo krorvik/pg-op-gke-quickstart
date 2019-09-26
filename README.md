@@ -4,6 +4,8 @@ This is a simple rundown of all the steps to get a zalando/postgres-operator clu
 
 WARNING: Some configuration must be performed to get this going. See minimal manifest diff that should work below. 
 
+Reference: https://github.com/zalando/postgres-operator.git
+
 # Steps
 
 ```console
