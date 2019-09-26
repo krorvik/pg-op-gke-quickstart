@@ -1,6 +1,10 @@
-This is a simple rundown of all the steps to get going. 
+# Scope
+
+This is a simple rundown of all the steps to get a postgres cluster up in GKE, in the default namespace. It is intended as a POC.
 
 WARNING: Some configuration must be performed to get this going. See minimal manifest diff that should work below. 
+
+# Steps
 
 ```console
 # Clone project to get templates
@@ -86,7 +90,7 @@ postgres@acid-minimal-cluster-0:~$ patronictl list
 +----------------------+------------------------+-----------+--------+------------------+----+-----------+
 ```
 
-Config diff:
+# Needed manifest diff to get things running
 
 ```diff
 diff --git a/manifests/postgres-operator.yaml b/manifests/postgres-operator.yaml
