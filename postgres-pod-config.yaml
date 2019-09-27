@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: postgres-pod-config
+  namespace: default
+data:
+  # Enable to turn backups on.
+  WALE_GS_PREFIX: gs://finn-pgpoc/spilo/$(SCOPE)
+  CLONE_WALE_GS_PREFIX: gs://finn-pgpoc/spilo/$(CLONE_SCOPE)
