@@ -143,11 +143,48 @@ index 3c79828..3f0b160 100644
 +++ b/manifests/postgresql-operator-default-configuration.yaml
 @@ -7 +7 @@ configuration:
 -  docker_image: registry.opensource.zalan.do/acid/spilo-11:1.5-p9
-+  docker_image: krorvik/spilo:finn-4
++  docker_image: krorvik/spilo:tzfix
 @@ -35 +35 @@ configuration:
 -    # pod_environment_configmap: ""
 +    pod_environment_configmap: postgres-pod-config
 @@ -38 +38 @@ configuration:
 -    pod_service_account_name: operator
 +    pod_service_account_name: zalando-postgres-operator
+```
+
+# Spilo changes to enable GCS backups
+
+The changes below are present in the docker_image used above. They fix a bug in WAL-E where timestamps from GCS are naive - which breaks the clone_with_wale.py script in the spilo image. 
+
+```
+krorvik@krorvik:/home/krorvik/code/spilo$ git diff
+diff --git a/postgres-appliance/bootstrap/clone_with_wale.py b/postgres-appliance/bootstrap/clone_with_wale.py
+index f2a2f6f..aa98df0 100755
+--- a/postgres-appliance/bootstrap/clone_with_wale.py
++++ b/postgres-appliance/bootstrap/clone_with_wale.py
+@@ -12,11 +12,11 @@ from maybe_pg_upgrade import call_maybe_pg_upgrade
+ 
+ from collections import namedtuple
+ from dateutil.parser import parse
++import pytz
+ 
+ logging.basicConfig(format='%(asctime)s %(levelname)s: %(message)s', level=logging.INFO)
+ logger = logging.getLogger(__name__)
+ 
+-
+ def read_configuration():
+     parser = argparse.ArgumentParser(description="Script to clone from S3 with support for point-in-time-recovery")
+     parser.add_argument('--scope', required=True, help='target cluster name')
+@@ -70,6 +70,11 @@ def choose_backup(output, recovery_target_time):
+     match_timestamp = match = None
+     for backup in backup_list:
+         last_modified = parse(backup['last_modified'])
++        # Here is where WAL-E returns a naive time, last_modified
++        # If running on Google Storage. Detect that, and set to same as recovery target if so
++        # The latter is checked to have a tzinfo in read_configuration().
++        tz = last_modified.tzinfo or recovery_target_time.tzinfo
++        last_modified = tz.localize(last_modified)
+         if last_modified < recovery_target_time:
+             if match is None or last_modified > match_timestamp:
+                 match = backup
 ```
