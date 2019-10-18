@@ -159,22 +159,9 @@ The changes below are present in the docker_image used above. They fix a bug in 
 ```
 krorvik@krorvik:/home/krorvik/code/spilo$ git diff
 diff --git a/postgres-appliance/bootstrap/clone_with_wale.py b/postgres-appliance/bootstrap/clone_with_wale.py
-index f2a2f6f..aa98df0 100755
+index f2a2f6f..b95eddb 100755
 --- a/postgres-appliance/bootstrap/clone_with_wale.py
 +++ b/postgres-appliance/bootstrap/clone_with_wale.py
-@@ -12,11 +12,11 @@ from maybe_pg_upgrade import call_maybe_pg_upgrade
- 
- from collections import namedtuple
- from dateutil.parser import parse
-+import pytz
- 
- logging.basicConfig(format='%(asctime)s %(levelname)s: %(message)s', level=logging.INFO)
- logger = logging.getLogger(__name__)
- 
--
- def read_configuration():
-     parser = argparse.ArgumentParser(description="Script to clone from S3 with support for point-in-time-recovery")
-     parser.add_argument('--scope', required=True, help='target cluster name')
 @@ -70,6 +70,11 @@ def choose_backup(output, recovery_target_time):
      match_timestamp = match = None
      for backup in backup_list:
