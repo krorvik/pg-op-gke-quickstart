@@ -122,7 +122,7 @@ postgresql.acid.zalan.do "acid-monitoring-cluster" deleted
 
 ```console
 $ kubectl create -f restore-minimal-postgres-manifest.yaml 
-postgresql.acid.zalan.do/acid-restored-cluster created
+postgresql.acid.zalan.do/acid-rest-cluster created
 ```
 
 # Tear down
@@ -131,4 +131,3 @@ postgresql.acid.zalan.do/acid-restored-cluster created
 $ gcloud -q container clusters delete pgcluster
 $ gsutil rm -rf gs://pgbucket-rl
 ```
-
