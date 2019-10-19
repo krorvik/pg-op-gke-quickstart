@@ -10,6 +10,7 @@ You need a google account, and a related billing account set up for Google Cloud
 
 # Setup project in GKE
 
+```console
 $ gcloud auth login  # (Pulls up browser)
 
 $ gcloud projects create rl-pgpoc
@@ -31,13 +32,17 @@ projectId: rl-pgpoc
 
 $ gcloud services enable container.googleapis.com --project rl-pgpoc
 Operation "operations/acf.a8db7ce2-a356-4354-9d69-6fbe56b1364f" finished successfully.
+```
 
 ### Create backup bucket in GCS
 
+```console
 $ gsutil mb -b on -c nearline -l europe-north1 gs://pgbucket-rl
+```
 
 # Create a cluster
 
+```console
 $ gcloud container clusters create pgcluster --zone=europe-north1-a --scopes=storage-rw --billing-project rl-pgpoc
 <SNIP>
 Creating cluster pgcluster in europe-north1-a... Cluster is being health-checked (master is healthy)...done.
@@ -46,6 +51,7 @@ To inspect the contents of your cluster, go to: https://console.cloud.google.com
 kubeconfig entry generated for pgcluster.
 NAME       LOCATION         MASTER_VERSION  MASTER_IP       MACHINE_TYPE   NODE_VERSION  NUM_NODES  STATUS
 pgcluster  europe-north1-a  1.13.7-gke.8    35.228.239.140  n1-standard-1  1.13.7-gke.8  3          RUNNING
+```
 
 ### Install operator
 
