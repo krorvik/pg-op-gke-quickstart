@@ -6,6 +6,8 @@ Reference: https://github.com/zalando/postgres-operator
 
 You need a google account, and a related billing account set up for Google Cloud (which is out of scope here). The code below will incur some cost, but no more than a sixpack will as long as you remember tearing things down.
 
+The steps below create a postgres operator, and a cluster that backs up to a GCS bucket. The clone step may be performed to do a disaster recovery as well. 
+
 # Steps
 
 # Setup project in GKE
@@ -94,6 +96,23 @@ postgres@acid-minimal-cluster-0:~$ patronictl list
 | acid-minimal-cluster | acid-minimal-cluster-1 | 10.12.2.6 |        |     running      |    |         0 |
 +----------------------+------------------------+-----------+--------+------------------+----+-----------+
 ```
+
+# Get the UID of the cluster 
+
+Yes, this is needed later:
+
+```console
+```
+
+# Delete the cluster
+
+Backup is kept in GCS:
+
+
+```console
+```
+
+# Recover the cluster from GCS
 
 # Tear down
 
