@@ -55,6 +55,7 @@ pgcluster  europe-north1-a  1.13.7-gke.8    35.228.239.140  n1-standard-1  1.13.
 
 ### Install operator
 
+```console
 $ kubectl create -f operator-service-account-rbac.yaml 
 serviceaccount/zalando-postgres-operator created
 clusterrole.rbac.authorization.k8s.io/zalando-postgres-operator created
@@ -70,9 +71,11 @@ $ sleep 30s
 
 $ kubectl create -f postgresql-operator-default-configuration.yaml 
 operatorconfiguration.acid.zalan.do/postgresql-operator-default-configuration created
+```
 
 # Cluster ops
 
+```console
 $  kubectl create -f minimal-postgres-manifest.yaml 
 postgresql.acid.zalan.do/acid-minimal-cluster created
 
