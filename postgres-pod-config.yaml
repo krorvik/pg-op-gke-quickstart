@@ -6,5 +6,6 @@ metadata:
 data:
   # Enable to turn backups on
   USE_WALG_BACKUP: "true"
+  USE_WALG_RESTORE: "true"
   WALG_GS_PREFIX: gs://pgbucket-rl/spilo/$(SCOPE)
   CLONE_WALG_GS_PREFIX: gs://pgbucket-rl/spilo/$(CLONE_SCOPE)

@@ -69,7 +69,7 @@ configmap/postgres-pod-config created
 $ kubectl create -f postgres-operator.yaml 
 deployment.apps/postgres-operator created
 
-$ sleep 30s
+$ sleep 10s
 
 $ kubectl create -f postgresql-operator-default-configuration.yaml 
 operatorconfiguration.acid.zalan.do/postgresql-operator-default-configuration created
@@ -99,10 +99,14 @@ postgres@acid-minimal-cluster-0:~$ patronictl list
 
 # Get the UID of the cluster 
 
-Yes, this is needed later:
+This is needed for clone operations:
 
 ```console
+$ kubectl get postgresql acid-minimal-cluster -o yaml | grep uid
+  uid: <uid>
 ```
+
+Store this so you can use it later.
 
 # Delete the cluster
 
@@ -110,9 +114,16 @@ Backup is kept in GCS:
 
 
 ```console
+$ kubectl delete postgresql acid-monitoring-cluster
+postgresql.acid.zalan.do "acid-monitoring-cluster" deleted
 ```
 
 # Recover the cluster from GCS
+
+```console
+$ kubectl create -f restore-minimal-postgres-manifest.yaml 
+postgresql.acid.zalan.do/acid-restored-cluster created
+```
 
 # Tear down
 
