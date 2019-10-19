@@ -4,6 +4,7 @@ metadata:
   name: postgres-pod-config
   namespace: default
 data:
-  # Enable to turn backups on.
-  WALE_GS_PREFIX: gs://finn-pgpoc/spilo/$(SCOPE)
-  CLONE_WALE_GS_PREFIX: gs://finn-pgpoc/spilo/$(CLONE_SCOPE)
+  # Enable to turn backups on
+  USE_WALG_BACKUP: "true"
+  WALG_GS_PREFIX: gs://pgbucket-rl/spilo/$(SCOPE)
+  CLONE_WALG_GS_PREFIX: gs://pgbucket-rl/spilo/$(CLONE_SCOPE)
