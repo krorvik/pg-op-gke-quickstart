@@ -1,7 +1,7 @@
 apiVersion: "acid.zalan.do/v1"
 kind: postgresql
 metadata:
-  name: acid-rest-cluster
+  name: acid-restore2-cluster
   namespace: default
 spec:
   teamId: "ACID"
@@ -11,13 +11,7 @@ spec:
   postgresql:
     version: "11"
   clone:
-    uid: "<uid>"
+    uid: "aa87bbfe-f4f9-11e9-8bb1-42010aa60061"
     cluster: "acid-monitoring-cluster"
-    timestamp: "2020-12-19T12:40:33+02:00"
-  sidecars:
-    - name: "postgres-exporter"
-      image: "wrouesnel/postgres_exporter:latest"
-      env:
-        - name: "DATA_SOURCE_NAME"
-          value: "postgresql://$(POSTGRES_USER):$(POSTGRES_PASSWORD)@$(POD_NAME)/postgres?sslmode=require"
+    timestamp: "2019-10-22T23:00:00+02:00"
  

@@ -7,13 +7,8 @@ spec:
   teamId: "ACID"
   volume:
     size: 1Gi
-  numberOfInstances: 2
+  numberOfInstances: 1
   postgresql:
     version: "11"
-  sidecars:
-    - name: "postgres-exporter"
-      image: "wrouesnel/postgres_exporter:latest"
-      env:
-        - name: "DATA_SOURCE_NAME"
-          value: "postgresql://$(POSTGRES_USER):$(POSTGRES_PASSWORD)@$(POD_NAME)/postgres?sslmode=require"
- 
+    parameters:
+      archive_timeout: "300"
