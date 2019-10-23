@@ -17,4 +17,3 @@ kubectl create -f postgres-pod-config.yaml
 kubectl create -f postgres-operator.yaml
 sleep 30s
 kubectl create -f postgresql-operator-default-configuration.yaml
-gsutil mb -b on -c nearline -l $REGION gs://$CLUSTER
