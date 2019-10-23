@@ -15,5 +15,5 @@ gcloud container clusters create $CLUSTER --zone=$ZONE --scopes=storage-rw --bil
 kubectl create -f operator-service-account-rbac.yaml
 kubectl create -f postgres-pod-config.yaml
 kubectl create -f postgres-operator.yaml
-sleep 30s
+sleep 10s
 kubectl create -f postgresql-operator-default-configuration.yaml
