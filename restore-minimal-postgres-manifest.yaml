@@ -1,7 +1,7 @@
 apiVersion: "acid.zalan.do/v1"
 kind: postgresql
 metadata:
-  name: acid-restored-cluster
+  name: acid-restore-cluster
   namespace: default
 spec:
   teamId: "ACID"
@@ -11,7 +11,7 @@ spec:
   postgresql:
     version: "11"
   clone:
-    uid: 
+    uid: "5b268b4e-f5d2-11e9-b895-42010aa601c8"
     cluster: "acid-minimal-cluster"
-    timestamp: "2019-10-22T23:00:00+02:00"
+    timestamp: "2019-10-23T23:10:00+02:00"
  
