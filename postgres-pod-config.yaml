@@ -8,6 +8,5 @@ data:
   USE_WALG_BACKUP: "true"
   USE_WALG_RESTORE: "true"
   WALG_DOWNLOAD_CONCURRENCY: "1"
-  WALG_UPLOAD_CONCURRENCY: "1"
   WALG_GS_PREFIX: "gs://pgbucket-rl/spilo/$(SCOPE)"
   CLONE_WALG_GS_PREFIX: "gs://pgbucket-rl/spilo/$(CLONE_SCOPE)"
