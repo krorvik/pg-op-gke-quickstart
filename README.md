@@ -14,33 +14,15 @@ The steps below create a postgres operator, and a cluster that backs up to a GCS
 
 ```console
 $ gcloud auth login  # (Pulls up browser)
-
-$ gcloud projects create rl-pgpoc
-Create in progress for [https://cloudresourcemanager.googleapis.com/v1/projects/rl-pgpoc].
-Waiting for [operations/cp.8944039908840415495] to finish...done.
-     
-$ gcloud config set project rl-pgpoc
-Updated property [core/project].
-
-$ gcloud alpha billing accounts list
-ACCOUNT_ID            NAME                           OPEN  MASTER_ACCOUNT_ID
-<ID>				  CRD                            True
-
-$ gcloud alpha billing projects link rl-pgpoc --billing-account=<ID>
-billingAccountName: billingAccounts/<ID>
-billingEnabled: true
-name: projects/rl-pgpoc/billingInfo
-projectId: rl-pgpoc
-
-$ gcloud services enable container.googleapis.com --project rl-pgpoc
-Operation "operations/acf.a8db7ce2-a356-4354-9d69-6fbe56b1364f" finished successfully.
 ```
 
-### Create backup bucket in GCS
+Set appropriate customer name in config.sh. 
 
-```console
-$ gsutil mb -b on -c nearline -l europe-north1 gs://pgbucket-rl
 ```
+$ ./setup.sh
+```
+
+
 
 # Create a cluster
 
