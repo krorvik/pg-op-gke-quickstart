@@ -16,45 +16,10 @@ The steps below create a postgres operator, and a cluster that backs up to a GCS
 $ gcloud auth login  # (Pulls up browser)
 ```
 
-Set appropriate customer name in config.sh. 
+Edit onfig.sh to your liking.
 
 ```
 $ ./setup.sh
-```
-
-
-
-# Create a cluster
-
-```console
-$ gcloud container clusters create pgcluster --zone=europe-north1-a --scopes=storage-rw --billing-project rl-pgpoc
-<SNIP>
-Creating cluster pgcluster in europe-north1-a... Cluster is being health-checked (master is healthy)...done.
-Created [https://container.googleapis.com/v1/projects/rl-pgpoc/zones/europe-north1-a/clusters/pgcluster].
-To inspect the contents of your cluster, go to: https://console.cloud.google.com/kubernetes/workload_/gcloud/europe-north1-a/pgcluster?project=rl-pgpoc
-kubeconfig entry generated for pgcluster.
-NAME       LOCATION         MASTER_VERSION  MASTER_IP       MACHINE_TYPE   NODE_VERSION  NUM_NODES  STATUS
-pgcluster  europe-north1-a  1.13.7-gke.8    35.228.239.140  n1-standard-1  1.13.7-gke.8  3          RUNNING
-```
-
-### Install operator
-
-```console
-$ kubectl create -f operator-service-account-rbac.yaml 
-serviceaccount/zalando-postgres-operator created
-clusterrole.rbac.authorization.k8s.io/zalando-postgres-operator created
-clusterrolebinding.rbac.authorization.k8s.io/zalando-postgres-operator created
-
-$ kubectl create -f postgres-pod-config.yaml 
-configmap/postgres-pod-config created
-
-$ kubectl create -f postgres-operator.yaml 
-deployment.apps/postgres-operator created
-
-$ sleep 10s
-
-$ kubectl create -f postgresql-operator-default-configuration.yaml 
-operatorconfiguration.acid.zalan.do/postgresql-operator-default-configuration created
 ```
 
 # Cluster ops
