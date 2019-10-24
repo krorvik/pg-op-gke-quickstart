@@ -75,6 +75,5 @@ postgresql.acid.zalan.do/acid-rest-cluster created
 # Tear down
 
 ```console
-$ gcloud -q container clusters delete pgcluster
-$ gsutil rm -rf gs://pgbucket-rl
+$ ./teardown.sh
 ```
