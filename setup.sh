@@ -25,9 +25,10 @@ data:
   USE_WALG_BACKUP: "true"
   USE_WALG_RESTORE: "true"
   WALG_GS_BUCKET: "gs://$PROJECT"
-  #WALG_LOG_LEVEL: "DEVEL"
-  #WALG_GS_PREFIX: "gs://$PROJECT/spilo/\$(SCOPE)"
-  #CLONE_WALG_GS_PREFIX: "gs://$PROJECT/spilo/\$(CLONE_SCOPE)"
+  WALG_LOG_LEVEL: "DEVEL"
+  WALG_GS_PREFIX: "gs://$PROJECT/spilo/\$(SCOPE)/wal"
+  CLONE_WAL_BUCKET_SCOPE_PREFIX: "gs://$PROJECT"
+  CLONE_WAL_BUCKET_SCOPE_SUFFIX: "/spilo/\$(CLONE_SCOPE)
 EOF
 
 
@@ -37,3 +38,5 @@ kubectl create -f postgres-operator.yaml
 sleep 30s
 kubectl create -f postgresql-operator-default-configuration.yaml
 gsutil mb -b on -l $REGION gs://$PROJECT
+sleep 30s
+kubectl create -f minimal-postgres-manifest.yaml
