@@ -24,9 +24,10 @@ data:
   # Enable to turn backups on
   USE_WALG_BACKUP: "true"
   USE_WALG_RESTORE: "true"
-  WALG_LOG_LEVEL: "DEVEL"
-  WALG_GS_PREFIX: "gs://$PROJECT/spilo/\$(SCOPE)"
-  CLONE_WALG_GS_PREFIX: "gs://$PROJECT/spilo/\$(CLONE_SCOPE)"
+  WALG_GS_BUCKET: "gs://$PROJECT"
+  #WALG_LOG_LEVEL: "DEVEL"
+  #WALG_GS_PREFIX: "gs://$PROJECT/spilo/\$(SCOPE)"
+  #CLONE_WALG_GS_PREFIX: "gs://$PROJECT/spilo/\$(CLONE_SCOPE)"
 EOF
 
 
