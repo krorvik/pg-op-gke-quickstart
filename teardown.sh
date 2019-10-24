@@ -1,5 +1,8 @@
 #!/bin/bash
 
+source ./config.sh
+
 PROJECT=$(cat .PROJECT | xargs)
-gsutil rm -rf gs://$PROJECT
-gcloud -q projects delete $PROJECT
+gcloud container clusters delete  $PROJECT --zone=$ZONE
+gsutil rm -rf gs://$PROJECT/spilo/*
+#gcloud -q projects delete $PROJECT

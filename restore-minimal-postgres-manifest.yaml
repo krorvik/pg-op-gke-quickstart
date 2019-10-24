@@ -11,7 +11,7 @@ spec:
   postgresql:
     version: "11"
   clone:
-    uid: "41232075-f651-11e9-ac18-42010aa60021"
+    uid: "c81cd3c6-f694-11e9-8dec-42010aa600aa"
     cluster: "acid-minimal-cluster"
-    timestamp: "2019-10-24T13:33:00+02:00"
+    timestamp: "2019-10-25T13:33:00+02:00"
  
