@@ -1,3 +1,7 @@
+#!/bin/bash
+RUID=$(kubectl get postgresql acid-minimal-cluster  -oyaml | grep uid | cut -d ':' -f 2 | xargs)
+
+cat << EOF | kubectl create -f -
 apiVersion: "acid.zalan.do/v1"
 kind: postgresql
 metadata:
@@ -11,7 +15,7 @@ spec:
   postgresql:
     version: "11"
   clone:
-    uid: "c81cd3c6-f694-11e9-8dec-42010aa600aa"
+    uid: "$RUID"
     cluster: "acid-minimal-cluster"
-    timestamp: "2019-10-25T13:33:00+02:00"
- 
+    timestamp: "2020-10-25T13:33:00+02:00"
+EOF
