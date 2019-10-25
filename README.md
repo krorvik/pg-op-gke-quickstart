@@ -12,7 +12,7 @@ The steps below create a postgres operator, and a cluster that backs up to a GCS
 
 Edit config.sh to your liking.
 
-# Setup project in GKE
+## Setup project in GKE
 
 ```console
 $ gcloud auth login  # (Pulls up browser)
@@ -24,18 +24,17 @@ And then create the project with related setup:
 $ ./init.sh
 ```
 
-# Set up the operator
+## Set up the operator
 
 ```
 $ ./setup.sh
 ```
 
-# Cluster ops
+This will create the operator, as well as a cluster in the last line, called acid-minimal-cluster. 
+
+## Cluster ops
 
 ```console
-$  kubectl create -f minimal-postgres-manifest.yaml 
-postgresql.acid.zalan.do/acid-minimal-cluster created
-
 $ kubectl get pods
 NAME                                 READY   STATUS    RESTARTS   AGE
 acid-minimal-cluster-0               1/1     Running   0          8m49s
@@ -50,11 +49,11 @@ postgres@acid-minimal-cluster-0:~$ patronictl list
 +----------------------+------------------------+-----------+--------+------------------+----+-----------+
 ```
 
-# Clone or restore
+## Clone or restore
 
 To clone or restore a cluster, you need the UID of that cluster. You can see how that's done in start_restore.sh. To test, run that script - it will get the UID of acid-minimal-cluster and pull up a clone. 
 
-# Tear down
+## Tear down
 
 ```console
 $ ./teardown.sh
