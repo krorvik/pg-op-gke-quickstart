@@ -3,7 +3,7 @@
 . ./config.sh
 PROJECT="$CUSTOMER-$ID"
 
-kubectl create -f operator-service-account-rbac.yaml
+kubectl create -f manifests/operator-service-account-rbac.yaml
 cat << EOF | kubectl create -f -
 # This config map provides environment variables to the pods in postgresql clusters. They are used by the spilo image. 
 apiVersion: v1
@@ -20,6 +20,6 @@ data:
   WALG_GS_PREFIX: gs://$PROJECT/spilo/\$(SCOPE)
   CLONE_WALG_GS_PREFIX: gs://$PROJECT/spilo/\$(CLONE_SCOPE)
 EOF
-kubectl create -f postgres-operator.yaml
-kubectl create -f postgresql-operator-default-configuration.yaml
-kubectl create -f minimal-postgres-manifest.yaml
+kubectl create -f manifests/postgres-operator.yaml
+kubectl create -f manifests/postgresql-operator-default-configuration.yaml
+kubectl create -f manifests/minimal-postgres-manifest.yaml

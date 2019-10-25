@@ -18,8 +18,8 @@ kubectl delete --grace-period 0 --force service acid-restore-cluster-config
 kubectl delete --grace-period 0 --force service acid-restore-cluster-repl
 kubectl delete --grace-period 0 --force poddisruptionbudgets.policy postgres-acid-minimal-cluster-pdb
 kubectl delete --grace-period 0 --force poddisruptionbudgets.policy postgres-acid-restore-cluster-pdb
-kubectl delete --grace-period 0 --force -f operator-service-account-rbac.yaml
-kubectl delete --grace-period 0 --force -f postgres-operator.yaml
-kubectl delete --grace-period 0 --force -f postgresql-operator-default-configuration.yaml
+kubectl delete --grace-period 0 --force -f manifests/operator-service-account-rbac.yaml
+kubectl delete --grace-period 0 --force -f manifests/postgres-operator.yaml
+kubectl delete --grace-period 0 --force -f manifests/postgresql-operator-default-configuration.yaml
 kubectl delete --grace-period 0 --force configmap postgres-pod-config
 gsutil rm -rf gs://$PROJECT/spilo/*
