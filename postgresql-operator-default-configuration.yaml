@@ -70,7 +70,8 @@ configuration:
     aws_region: eu-central-1
     # kube_iam_role: ""
     # log_s3_bucket: ""
-    # wal_s3_bucket: ""
+    #wal_s3_bucket: "gs://finn-poc"
+    #wal_gs_bucket: "gs://finn-poc"
   logical_backup:
     logical_backup_schedule: "30 00 * * *"
     logical_backup_docker_image: "registry.opensource.zalan.do/acid/logical-backup"
