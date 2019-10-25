@@ -48,40 +48,27 @@ postgres@acid-minimal-cluster-0:~$ patronictl list
 |       Cluster        |         Member         |    Host   |  Role  |      State       | TL | Lag in MB |
 +----------------------+------------------------+-----------+--------+------------------+----+-----------+
 | acid-minimal-cluster | acid-minimal-cluster-0 | 10.12.2.5 | Leader |     running      |  1 |         0 |
-| acid-minimal-cluster | acid-minimal-cluster-1 | 10.12.2.6 |        |     running      |    |         0 |
 +----------------------+------------------------+-----------+--------+------------------+----+-----------+
 ```
 
-# Get the UID of the cluster 
+# Clone or restore
 
-This is needed for clone operations:
-
-```console
-$ kubectl get postgresql acid-minimal-cluster -o yaml | grep uid
-  uid: <uid>
-```
-
-Store this so you can use it later.
-
-# Delete the cluster
-
-Backup is kept in GCS:
-
-
-```console
-$ kubectl delete postgresql acid-monitoring-cluster
-postgresql.acid.zalan.do "acid-monitoring-cluster" deleted
-```
-
-# Recover the cluster from GCS
-
-```console
-$ kubectl create -f restore-minimal-postgres-manifest.yaml 
-postgresql.acid.zalan.do/acid-rest-cluster created
-```
+To clone or restore a cluster, you need the UID of that cluster. You can see how that's done in start_restore.sh. To test, run that script - it will get the UID of acid-minimal-cluster and pull up a clone. 
 
 # Tear down
 
 ```console
 $ ./teardown.sh
 ```
+
+At this point you may repeat the steps from setup.sh if you want to change stuff. That will tear down all pods and resources, and let you quickly start over.
+
+Note that this sometimes hangs after a few resources are deleted. Cancel it and run again in that case. 
+
+If you are done, remove all traces using:
+
+```console
+$ ./exit.sh
+```
+
+This will remove the project and gs bucket. Beware that google has a project quota, so don't go crazy. You may undelete the project if you like (use undelete instead of delete for the command from setup.sh). 
