@@ -49,6 +49,8 @@ postgres@acid-minimal-cluster-0:~$ patronictl list
 +----------------------+------------------------+-----------+--------+------------------+----+-----------+
 ```
 
+Note we use "su postgres", since we *don't* want to reset environment vars with a full login.  
+
 ## Clone or restore
 
 To clone or restore a cluster, you need the UID of that cluster. You can see how that's done in start_restore.sh. To test, run that script - it will get the UID of acid-minimal-cluster and pull up a clone. 
