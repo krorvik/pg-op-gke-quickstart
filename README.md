@@ -39,7 +39,6 @@ postgresql.acid.zalan.do/acid-minimal-cluster created
 $ kubectl get pods
 NAME                                 READY   STATUS    RESTARTS   AGE
 acid-minimal-cluster-0               1/1     Running   0          8m49s
-acid-minimal-cluster-1               1/1     Running   0          8m10s
 postgres-operator-599fd68d95-mn2k6   1/1     Running   0          15m
 
 $ kubectl exec -it acid-minimal-cluster-0 su postgres
