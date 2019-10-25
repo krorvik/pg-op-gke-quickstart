@@ -1,7 +1,8 @@
-# Set arbitrary customer name, and the ID of your billing account. 
+# Set arbitrary customer name and ID, and the ID of your billing account. 
 CUSTOMER="finn"
+ID="poc"
 BILLINGACCOUNT="0183FE-3C29B7-21A890"
 
-# Region and zone must be set as you like. 
+# Region and zone must be set as you like. REGION for gs buckets, ZONE for k8s 
 REGION="europe-north1"
 ZONE="europe-north1-a"

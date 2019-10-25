@@ -1,6 +1,7 @@
 #!/bin/bash
 
-PROJECT=$(cat .PROJECT | xargs)
+. ./config.sh
+PROJECT="$CUSTOMER-$ID"
 
 kubectl delete --grace-period 0 --force  postgresql acid-minimal-cluster
 kubectl delete --grace-period 0 --force  postgresql acid-restore-cluster

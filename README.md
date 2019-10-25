@@ -1,6 +1,6 @@
 # Scope
 
-This is a simple rundown of all the steps to get a zalando/postgres-operator cluster up in GKE, in the default namespace, with basebackups/WAL archiving in GCS. It is intended as a POC.
+This is a simple rundown of all the steps to get a zalando/postgres-operator cluster up in GKE, in the default namespace, with basebackups/WAL archiving in GCS, using WAL-G. It is intended as a POC.
 
 Reference: https://github.com/zalando/postgres-operator
 
@@ -10,13 +10,21 @@ The steps below create a postgres operator, and a cluster that backs up to a GCS
 
 # Steps
 
+Edit config.sh to your liking.
+
 # Setup project in GKE
 
 ```console
 $ gcloud auth login  # (Pulls up browser)
 ```
 
-Edit onfig.sh to your liking.
+And then create the project with related setup:
+
+```console
+$ ./init.sh
+```
+
+# Set up the operator
 
 ```
 $ ./setup.sh
