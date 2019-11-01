@@ -1,0 +1,35 @@
+apiVersion: "acid.zalan.do/v1"
+kind: postgresql
+metadata:
+  name: rl-demo-cluster
+  namespace: default
+spec:
+  teamId: "RL"   #First part of name must match
+  volume:
+    size: 1Gi
+  numberOfInstances: 2
+  users:
+    rldemo: []
+    prometheus: []
+  databases:
+    rldemo: rldemo
+  postgresql:
+    version: "10"  # Let's perform an upgrade later
+    parameters:
+      archive_timeout: "300"  # spilo defaults it to 30 minutes, which may be a tad too long
+
+  sidecars:
+    - name: "monitor"
+      image: "wrouesnel/postgres_exporter:latest"
+      env:
+        - name: "PROMETHEUS_DB_PASSWORD"
+          valueFrom:
+            secretKeyRef:
+              name: prometheus.rl-demo-cluster.credentials.postgresql.acid.zalan.do
+              key: password
+
+        - name: "DATA_SOURCE_NAME"
+          value: "postgresql://prometheus:$(PROMETHEUS_DB_PASSWORD)@$(POD_NAME):5432/postgres?sslmode=require"
+
+
+

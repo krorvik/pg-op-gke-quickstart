@@ -23,7 +23,7 @@ configuration:
     cluster_labels:
         application: spilo
     cluster_name_label: cluster-name
-    enable_pod_antiaffinity: false
+    enable_pod_antiaffinity: true
     enable_pod_disruption_budget: true
     # infrastructure_roles_secret_name: ""
     # inherited_labels:
@@ -46,7 +46,7 @@ configuration:
   postgres_pod_resources:
     default_cpu_limit: "3"
     default_cpu_request: 100m
-    default_memory_limit: 1Gi
+    default_memory_limit: 256Mi 
     default_memory_request: 100Mi
   timeouts:
     pod_label_wait_timeout: 10m
