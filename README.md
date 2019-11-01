@@ -3,6 +3,7 @@
 This is a simple rundown of all the steps to get a zalando/postgres-operator cluster up in GKE, in the default namespace, with basebackups/WAL archiving in GCS, using WAL-G. It is intended as a POC.
 
 Reference: https://github.com/zalando/postgres-operator
+
 Blog entry: https://www.redpill-linpro.com/techblog/2019/09/28/postgres-in-kubernetes.html
 
 You need a google account, and a related billing account set up for Google Cloud (which is out of scope here). The code below will incur some cost, but no more than a sixpack will as long as you remember tearing things down.
