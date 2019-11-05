@@ -9,7 +9,7 @@ data:
   USE_WALG_BACKUP: "true"
   USE_WALG_RESTORE: "true"
   # We need to provide the bucket for WAL-G operations. DO NOT quote these vars - it breaks spilo configuration. 
-  WALG_GS_PREFIX: gs://finn-poc/spilo/\$(SCOPE)
-  CLONE_WALG_GS_PREFIX: gs://finn-poc/spilo/\$(CLONE_SCOPE)
+  WALG_GS_PREFIX: gs://finn-poc/spilo/$(SCOPE)
+  CLONE_WALG_GS_PREFIX: gs://finn-poc/spilo/$(CLONE_SCOPE)
   #This forces standby creation to always use pg_basebackup. 
   WALE_BACKUP_THRESHOLD_PERCENTAGE: "100" 
