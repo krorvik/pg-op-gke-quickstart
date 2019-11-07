@@ -10,5 +10,3 @@ spec:
   numberOfInstances: 1
   postgresql:
     version: "11"
-    parameters:
-      archive_timeout: "300"
