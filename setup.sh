@@ -6,8 +6,6 @@ PROJECT="$CUSTOMER-$ID"
 #Create with rw storage access, and a bit larger machine than usual so we con fit some pods
 gcloud container clusters create $PROJECT --zone=$ZONE --scopes=storage-rw --billing-project $PROJECT --machine-type n1-standard-2
 
-exit
-
 kubectl create -f manifests/operator-service-account-rbac.yaml
 cat << EOF | kubectl create -f -
 # This config map provides environment variables to the pods in postgresql clusters. They are used by the spilo image. 
@@ -30,4 +28,4 @@ EOF
 kubectl create -f manifests/postgres-operator.yaml
 sleep 20s # operator needs to be running before the below is run
 kubectl create -f manifests/postgresql-operator-default-configuration.yaml
-#kubectl create -f manifests/minimal-postgres-manifest.yaml
+kubectl create -f manifests/rldemo-cluster.yaml
