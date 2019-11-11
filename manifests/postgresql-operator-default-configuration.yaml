@@ -5,7 +5,7 @@ metadata:
 configuration:
   etcd_host: ""
   #docker_image: registry.opensource.zalan.do/acid/spilo-11:1.6-p1
-  docker_image: krorvik/spilo:walgfix-2
+  docker_image: krorvik/spilo:walgfix
   # enable_shm_volume: true
   max_instances: -1
   min_instances: 1
