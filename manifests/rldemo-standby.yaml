@@ -1,7 +1,7 @@
 apiVersion: "acid.zalan.do/v1"
 kind: postgresql
 metadata:
-  name: rl-demo2-cluster
+  name: rl-standby-cluster
   namespace: default
 spec:
   teamId: "RL"                #First part of metadata.name must match this (lowercapsing is fine)
@@ -9,14 +9,12 @@ spec:
     size: 1Gi                 # Size of persistent volume clain
   numberOfInstances: 1
   # postgres-operator can create users, and placed random passwords in k8s secrets, see below:  
-  users:
-    rldemo: []
-    prometheus: []
-  # Create database: owner 
-  databases:
-    rldemo: rldemo
   postgresql:
     version: "12"             # Let's perform an upgrade later
     # This is where we can configure postgreSQL. Recommend not touching shared_buffers
     parameters:
       archive_timeout: "300"  # spilo defaults it to 30 minutes, which may be a tad too long
+
+  standby:
+    s3_wal_path: gs://finn-poc/testbackup
+    
