@@ -20,6 +20,7 @@ data:
   USE_WALG: "true"
   USE_WALG_BACKUP: "true"
   USE_WALG_RESTORE: "true"
+  #WALG_GS_BUCKET: gs://$PROJECT
   # We need to provide the bucket for WAL-G operations. DO NOT quote these vars - it breaks spilo configuration. 
   WALG_GS_PREFIX: gs://$PROJECT/spilo/\$(SCOPE)
   CLONE_WALG_GS_PREFIX: gs://$PROJECT/spilo/\$(CLONE_SCOPE)
