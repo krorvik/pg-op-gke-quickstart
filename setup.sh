@@ -4,7 +4,7 @@
 PROJECT="$CUSTOMER-$ID"
 
 #Create with rw storage access, and a bit larger machine than usual so we con fit some pods
-#gcloud container clusters create $PROJECT --zone=$ZONE --scopes=storage-rw --billing-project $PROJECT --machine-type n1-standard-2
+gcloud container clusters create $PROJECT --zone=$ZONE --scopes=storage-rw --billing-project $PROJECT --machine-type n1-standard-2
 
 
 kubectl create -f manifests/operator-service-account-rbac.yaml
@@ -16,17 +16,13 @@ metadata:
   name: postgres-pod-config
   namespace: default
 data:
-  # These three make sure we use WAL-G for all basebackup and archiving
   USE_WALG: "true"
   USE_WALG_BACKUP: "true"
   USE_WALG_RESTORE: "true"
-  WAL_GS_BUCKET: $PROJECT
-  # We need to provide the bucket for WAL-G operations. DO NOT quote these vars - it breaks spilo configuration. 
-  #WALG_GS_PREFIX: gs://$PROJECT/spilo/\$(SCOPE)
-  #CLONE_WALG_GS_PREFIX: gs://$PROJECT/spilo/\$(CLONE_SCOPE)
-  #This forces standby creation to always use pg_basebackup. 
+  WALG_GS_PREFIX: gs://$PROJECT/spilo/\$(SCOPE)
+  CLONE_WALG_GS_PREFIX: gs://$PROJECT/spilo/\$(CLONE_SCOPE)
   WALE_BACKUP_THRESHOLD_PERCENTAGE: "100"
 EOF
-#kubectl create -f manifests/postgres-operator.yaml
-#sleep 20s # operator needs to be running before the below is run
-#kubectl create -f manifests/postgresql-operator-default-configuration.yaml
+kubectl create -f manifests/postgres-operator.yaml
+sleep 20s # operator needs to be running before the below is run
+kubectl create -f manifests/postgresql-operator-default-configuration.yaml
