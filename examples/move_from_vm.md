@@ -36,7 +36,7 @@ Create the default config file for wal-g, in /var/lib/postgresql/.walg.json. As 
 {
   "GOOGLE_APPLICATION_CREDENTIALS": "/var/lib/postgresql/gscreds.json",
   "PGHOST": "/var/run/postgresql",
-  "WALG_GS_PREFIX": "gs://<bucketname>/spilo/<clustername>"
+  "WALG_GS_PREFIX": "gs://rl-poc/spilo/<clustername>"
 }
 ```
 
@@ -145,3 +145,31 @@ wal_log_hints = 'on'
 hba_file = '/home/postgres/pgdata/pgroot/data/pg_hba.conf'
 ident_file = '/home/postgres/pgdata/pgroot/data/pg_ident.conf'
 ```
+
+## Perform a basebackup towards the bucket
+
+Almost ready now - but we need to have a full basebackup present to be able to clone. As postgres:
+
+```console
+postgres@krorvik:~$ wal-g backup-push /var/lib/postgresql/12/main
+INFO: 2019/12/20 10:49:42.066652 Doing full backup.
+INFO: 2019/12/20 10:49:42.081660 Calling pg_start_backup()
+INFO: 2019/12/20 10:49:42.116724 Walking ...
+INFO: 2019/12/20 10:49:42.116877 Starting part 1 ...
+INFO: 2019/12/20 10:49:47.594826 Finished writing part 1.
+INFO: 2019/12/20 10:49:47.905237 Starting part 2 ...
+INFO: 2019/12/20 10:49:47.905300 /global/pg_control
+INFO: 2019/12/20 10:49:47.910406 Finished writing part 2.
+INFO: 2019/12/20 10:49:47.912371 Calling pg_stop_backup()
+INFO: 2019/12/20 10:49:48.965129 Starting part 3 ...
+INFO: 2019/12/20 10:49:48.970310 backup_label
+INFO: 2019/12/20 10:49:48.970401 tablespace_map
+INFO: 2019/12/20 10:49:48.972616 Finished writing part 3.
+INFO: 2019/12/20 10:49:49.326948 Wrote backup with name base_000000010000000000000023
+```
+
+At this point, a full basebackup is present in our gs bucket.
+
+## Setting up the actual k8s cluster
+
+Setting up a postgres-operated cluster now becomes as easy as the example rldemo-restore.yaml. 
