@@ -1,7 +1,4 @@
 #!/bin/bash
 
-. ./config.sh
-PROJECT="$CUSTOMER-$ID"
-
-gcloud container clusters delete finn-poc --zone=$ZONE
-gsutil rm -rf gs://$PROJECT/spilo/*
+gcloud container clusters delete rl-poc --zone=europe-north1-a
+gsutil rm -rf gs://rl-poc/spilo/*

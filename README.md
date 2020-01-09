@@ -6,35 +6,33 @@ Reference: https://github.com/zalando/postgres-operator
 
 Blog entry: https://www.redpill-linpro.com/techblog/2019/09/28/postgres-in-kubernetes.html
 
-You need a google account, and a related billing account set up for Google Cloud (which is out of scope here). The code below will incur some cost, but no more than a sixpack will as long as you remember tearing things down.
+Note: Some improvements in postgres-operator has made the contents of this repo a bit simpler than the blogpost. 
+
+You need a google account, and a related billing account set up for Google Cloud (which is out of scope here). Create a project - here, we use the name "rl-poc" both for the bucket and the project. The project must have a billing account coupled, and google kubernetes engine enabled. 
+
+Example commands:
+
+```console
+$ gcloud config set project rl-poc 
+$ gcloud alpha billing projects link rl-poc --billing-account=<billing account id>
+$ gcloud services enable container.googleapis.com --project rl-poc
+```
 
 The steps below create a postgres operator, and a cluster that backs up to a GCS bucket. The clone step may be performed to do a disaster recovery as well. 
 
-# Steps
-
-Edit config.sh to your liking.
-
-## Setup project in GKE
-
-```console
-$ gcloud auth login  # (Pulls up browser)
-```
-
-And then create the project with related setup:
-
-```console
-$ ./init.sh
-```
-
-## Set up the operator
+# Set up the operator
 
 ```
-$ ./setup.sh
+$ kubectl apply -f manifests/postgres-pod-config.yaml
+$ kubectl apply -f manifests/operator-service-account-rbac.yaml
+$ kubectl apply -f manifests/postgres-operator.yaml
+$ sleep 20s # operator needs some init time before the next line works
+$ kubectl apply -f manifests/postgresql-operator-default-configuration.yaml
 ```
 
-This will create the operator, as well as a cluster in the last line, called acid-minimal-cluster. 
+At this point clusters can be created. See the rldemo-manifests for examples. 
 
-## Cluster ops
+# Cluster ops
 
 ```console
 $ kubectl get pods
@@ -53,24 +51,8 @@ postgres@acid-minimal-cluster-0:~$ patronictl list
 
 Note we use "su postgres", since we *don't* want to reset environment vars with a full login.  
 
-## Clone or restore
-
-To clone or restore a cluster, you need the UID of that cluster. You can see how that's done in start_restore.sh. To test, run that script - it will get the UID of acid-minimal-cluster and pull up a clone. 
-
-## Tear down
+# Tear down
 
 ```console
 $ ./teardown.sh
 ```
-
-At this point you may repeat the steps from setup.sh if you want to change stuff. That will tear down all pods and resources, and let you quickly start over.
-
-Note that this sometimes hangs after a few resources are deleted. Cancel it and run again in that case. 
-
-If you are done, remove all traces using:
-
-```console
-$ ./exit.sh
-```
-
-This will remove the project and gs bucket. Beware that google has a project quota, so don't go crazy. You may undelete the project if you like (use undelete instead of delete for the command from setup.sh). 
