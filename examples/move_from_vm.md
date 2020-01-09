@@ -83,7 +83,9 @@ At this point, you should call "select pg_switch_wal();" to see if segments are 
 
 postgres-operator expects the cluster to clone to be set up by another postgres-operated pod. For debian based source clusters, two essential files are not present in the data directory. We therefore need to place them there, with a good set of defaults. Place these two files in the data directory in the source cluster. 
 
-```pg_hba.conf
+pg_hba.conf:
+
+```
 local   all             all                                   trust
 host    all             all                127.0.0.1/32       md5
 host    all             all                ::1/128            md5
@@ -92,7 +94,9 @@ hostnossl all           all                all                reject
 hostssl all             all                all                md5
 ```
 
-```postgresql.conf
+postgresql.conf:
+
+```
 archive_command = 'envdir "/home/postgres/etc/wal-e.d/env" wal-g wal-push "%p"'
 archive_mode = 'on'
 archive_timeout = '300'
