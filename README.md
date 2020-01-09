@@ -52,6 +52,14 @@ postgres@rl-demo-cluster-0:~$ patronictl list
 
 Note we use "su postgres", since we *don't* want to reset environment vars with a full login.
 
+## Resize a cluster
+
+```console
+$ kubectl edit postgresql rl-demo-cluster
+```
+
+Change the numberOfInstances, and save/quit. Operator will change the standby count. 
+
 ## Delete a cluster
 
 ```console
