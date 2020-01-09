@@ -72,7 +72,12 @@ $ kubectl delete postgresql rl-demo-cluster
 $ kubectl apply -f manifests/rldemo-restore.yaml
 ```
 
-The clone-section is the magic part. 
+The clone-section is the magic part. The same procedure can be used to clone a cluster while it is running, as long as you give it a new name. If it does not exist, you may reuse the name.
+
+## Increase storage
+
+You need to edit the PVC entries to change storage in GKE at the moment, due to operator limitations. Edit the PVC, and then restart (kill) the pods, standbys then master to resize. Yes, this incurs a little downtime. 
+
 
 # Tear down
 
