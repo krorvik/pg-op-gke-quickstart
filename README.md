@@ -30,12 +30,12 @@ $ sleep 20s # operator needs some init time before the next line works
 $ kubectl apply -f manifests/postgresql-operator-default-configuration.yaml
 ```
 
-At this point clusters can be created. See the rldemo-manifests for examples. 
+At this point clusters can be created. See the examples/rldemo files for examples. 
 
 # Cluster ops
 
 ```console
-$ kubectl apply -f manifests/rldemo-cluster.yaml
+$ kubectl apply -f examples/rldemo-cluster.yaml
 
 $ kubectl get pods
 NAME                                 READY   STATUS    RESTARTS   AGE
@@ -70,7 +70,7 @@ $ kubectl delete postgresql rl-demo-cluster
 ## Restore a cluster
 
 ```console
-$ kubectl apply -f manifests/rldemo-restore.yaml
+$ kubectl apply -f examples/rldemo-restore.yaml
 ```
 
 The clone-section is the magic part. The same procedure can be used to clone a cluster while it is running, as long as you give it a new name. If it does not exist, you may reuse the name.
