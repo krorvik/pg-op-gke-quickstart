@@ -4,7 +4,7 @@ WARNING: This procedure is not functional on RedHat based servers, as the postgr
 
 To move a database into a postgres-operated cluster, we recommend using WAL-G to place a PITR-enabled archive in a bucket the operated cluster has access to. The config for the old cluster is quite simple, and does not require outside access. 
 
-We assume here we have a k8s cluster up and running, and the operator installed as the manfests in this repo shows. That is, a bucket called gs://rl-poc is available, and the cluster can read it (and preferably write to it, if you want your postgres-operated clusters backed up).
+We assume here we have a k8s cluster up and running, and the operator installed as the manifests in this repo shows. That is, a bucket called gs://rl-poc is available, and the cluster can read it (and preferably write to it, if you want your postgres-operated clusters backed up).
 
 ## Create a service account to use the bucket
 
