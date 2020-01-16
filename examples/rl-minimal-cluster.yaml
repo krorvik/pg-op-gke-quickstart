@@ -1,12 +1,12 @@
 apiVersion: "acid.zalan.do/v1"
 kind: postgresql
 metadata:
-  name: rl-demo-cluster
+  name: rl-minimal-cluster
   namespace: default
 spec:
-  teamId: "RL"                #First part of metadata.name must match this (lowercapsing is fine)
+  teamId: "RL"                #First part of metadata.name must match this)
   volume:
     size: 1Gi                 # Size of persistent volume clain
   numberOfInstances: 1
   postgresql:
-    version: "12"             # Let's perform an upgrade later
+    version: "10"             # Let's perform an upgrade later
