@@ -13,7 +13,7 @@ configuration:
   repair_period: 5m
   # set_memory_request_to_limit: false
   sidecar_docker_images:
-    monitor: "krorvik/pg-op-exporter:1"
+    monitor: "krorvik/pg-op-exporter:latest"
   workers: 4
   users:
     replication_username: standby

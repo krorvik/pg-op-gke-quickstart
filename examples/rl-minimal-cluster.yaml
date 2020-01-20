@@ -7,7 +7,7 @@ spec:
   teamId: "RL"                #First part of metadata.name must match this)
   volume:
     size: 1Gi                 # Size of persistent volume clain
-  numberOfInstances: 1
+  numberOfInstances: 2
   postgresql:
     version: "10"             # Let's perform an upgrade later
     parameters:
