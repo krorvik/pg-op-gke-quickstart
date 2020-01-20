@@ -10,15 +10,15 @@ spec:
   numberOfInstances: 1
   users:
     rldemo: []
-    prometheus: []
   databases:
     rldemo: rldemo
   postgresql:
     version: "11"
     parameters:
+      unix_socket_directories: "/var/run/postgresql,/home/postgres/pgdata/tmp"
       archive_timeout: "300"  # spilo defaults it to 30 minutes, which may be a tad too long
 
   clone:
-    cluster: rl-demo-cluster
+    cluster: rl-minimal-cluster
     timestamp: 2020-09-23T23:59:00+02:00
     
