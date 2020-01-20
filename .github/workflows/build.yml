@@ -1,0 +1,19 @@
+---
+name: Build and push docker images
+
+on:
+  push:
+    branches:
+      master
+
+
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+
+      - name: Build prometheus docker image for monitoring
+        run: docker build -t krorvik/pg-op-exporter:latest prometheus/
