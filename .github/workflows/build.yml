@@ -17,3 +17,6 @@ jobs:
 
       - name: Build prometheus docker image for monitoring
         run: docker build -t krorvik/pg-op-exporter:latest prometheus/
+
+      - name: Log in to docker
+        run: echo ${{ secrets.DOCKER_PASSWORD }} | docker login -u ${{ secrets.DOCKER_USERNAME }} --password-stdin
