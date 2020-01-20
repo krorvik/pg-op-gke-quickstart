@@ -11,4 +11,3 @@ data:
   WALG_GS_PREFIX: gs://rl-poc/spilo/$(SCOPE)
   CLONE_WALG_GS_PREFIX: gs://rl-poc/spilo/$(CLONE_SCOPE)
   WALE_BACKUP_THRESHOLD_PERCENTAGE: "100"
-  PGHOST: /home/postgres/pgdata/tmp/

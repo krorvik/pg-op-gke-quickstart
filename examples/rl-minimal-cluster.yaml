@@ -11,4 +11,4 @@ spec:
   postgresql:
     version: "10"             # Let's perform an upgrade later
     parameters:
-      unix_socket_directories: /home/postgres/pgdata/tmp
+      unix_socket_directories: "/var/run/postgresql,/home/postgres/pgdata/tmp"
