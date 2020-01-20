@@ -10,3 +10,5 @@ spec:
   numberOfInstances: 1
   postgresql:
     version: "10"             # Let's perform an upgrade later
+    parameters:
+      unix_socket_directories: /home/postgres/pgdata/tmp
