@@ -1,7 +1,5 @@
 # Moving a database from an oldschool VM to postgres-operated cluster
 
-WARNING: This procedure is not functional on RedHat based servers, as the postgresql.conf and pg_hba.conf files are in $DATADIR. Bad idea, Red Hat ;)
-
 To move a database into a postgres-operated cluster, we recommend using WAL-G to place a PITR-enabled archive in a bucket the operated cluster has access to. The config for the old cluster is quite simple, and does not require outside access. 
 
 We assume here we have a k8s cluster up and running, and the operator installed as the manifests in this repo shows. That is, a bucket called gs://rl-poc is available, and the cluster can read it (and preferably write to it, if you want your postgres-operated clusters backed up).
@@ -79,7 +77,9 @@ The steps above usually do not replace any basebackups you may be doing, so that
 
 At this point, you should call "select pg_switch_wal();" to see if segments are archived. Check that there are no ".ready" files in the wal folder on the master server - and that files appear in the bucket under the given path.  (Note: call "pg_switch_xlog()" in postgresql < 10)
 
-## Prepare for postgres-operator configuration
+# Prepare for postgres-operator configuration
+
+This section applies only for debian based servers - for RHEL-based servers, you can skip this part. 
 
 postgres-operator expects the cluster to clone to be set up by another postgres-operated pod. For debian based source clusters, two essential files are not present in the data directory. We therefore need to place them there, with a good set of defaults. Place these two files in the data directory in the source cluster. 
 
