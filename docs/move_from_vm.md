@@ -1,6 +1,6 @@
 # Moving a database from an oldschool VM to postgres-operated cluster
 
-WARNING: This procedure is not functional on RedHat based servers, as the postgresql.conf and pg_hba.conf files are in $DATADIR. Bad idea, Red Hat ;)
+WARNING: This procedure is not yet proved functional on RedHat based servers, as the postgresql.conf and pg_hba.conf files are in $DATADIR. This will be added when tested. 
 
 To move a database into a postgres-operated cluster, we recommend using WAL-G to place a PITR-enabled archive in a bucket the operated cluster has access to. The config for the old cluster is quite simple, and does not require outside access. 
 
