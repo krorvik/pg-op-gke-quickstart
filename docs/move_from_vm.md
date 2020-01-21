@@ -77,7 +77,7 @@ The steps above usually do not replace any basebackups you may be doing, so that
 
 At this point, you should call "select pg_switch_wal();" to see if segments are archived. Check that there are no ".ready" files in the wal folder on the master server - and that files appear in the bucket under the given path.  (Note: call "pg_switch_xlog()" in postgresql < 10)
 
-# Prepare for postgres-operator configuration
+# Prepare for postgres-operator configuration (debian based only)
 
 This section applies only for debian based servers - for RHEL-based servers, you can skip this part. 
 
