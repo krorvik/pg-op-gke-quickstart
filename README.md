@@ -9,7 +9,7 @@ This is a simple rundown of all the steps to get a zalando/postgres-operator clu
 
 Note: Some improvements in postgres-operator has made the contents of this repo a bit simpler than the blogpost. It now supports all major postgresql versions 9.4 to 12 that are not EOL. 
 
-You need a google account, and a related billing account set up for Google Cloud (which is out of scope here). Create a project - here, we use the name "rl-poc" both for the bucket and the project. The project must have a billing account coupled, and google kubernetes engine enabled. You also need a GCS bucket that the clusters can write to. 
+You need a google account, and a related billing account set up. Create a project - here, we use the name "rl-poc" both for the bucket and the project. The project must have a billing account coupled, and google kubernetes engine enabled. You also need a GCS bucket that the clusters can write to.
 
 Example commands for preparation:
 
@@ -30,7 +30,9 @@ $ sleep 20s # operator needs some init time before the next line works
 $ kubectl apply -f manifests/postgresql-operator-default-configuration.yaml
 ```
 
-At this point clusters can be created. See the examples/rldemo files for examples. 
+If the last one fails, wait a little and try again. 
+
+When the last one succeeds, you should see a pod postgres-operator-<id> running, and at this point clusters can be created. See the examples/rldemo files for examples. 
 
 # Cluster ops
 
