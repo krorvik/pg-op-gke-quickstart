@@ -20,6 +20,10 @@ $ gcloud alpha billing projects link rl-poc --billing-account=<billing account i
 $ gcloud services enable container.googleapis.com --project rl-poc
 ```
 
+# Configuration details
+
+The manifest files in this repo are set up to install the operator in the "default" namespace, and to listen *only* for postgresqls in that namespace. Please see https://postgres-operator.readthedocs.io/en/latest/administrator/#select-the-namespace-to-deploy-to for details if you want to change that. 
+
 # Set up the operator
 
 ```

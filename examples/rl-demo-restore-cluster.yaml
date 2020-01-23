@@ -15,7 +15,6 @@ spec:
   postgresql:
     version: "11"
     parameters:
-      unix_socket_directories: "/var/run/postgresql,/home/postgres/pgdata/tmp"
       archive_timeout: "300"  # spilo defaults it to 30 minutes, which may be a tad too long
 
   clone:

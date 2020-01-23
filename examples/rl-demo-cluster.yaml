@@ -8,8 +8,24 @@ spec:
   volume:
     size: 1Gi                 # Size of persistent volume clain
   numberOfInstances: 2
+  users:
+    prometheus: []
   postgresql:
     version: "10"             # Let's perform an upgrade later
     parameters:
-      unix_socket_directories: "/var/run/postgresql,/home/postgres/pgdata/tmp"
       archive_timeout: "300s"
+
+  # A monitoring sidecar:
+  sidecars:
+    - name: "monitor"   #Kept short for easy ref on command line
+      image: "wrouesnel/postgres_exporter:latest"
+      env:
+        # Get the password from the secret the operator creates
+        - name: "PROMETHEUS_DB_PASSWORD"
+          valueFrom:
+            secretKeyRef:
+              name: prometheus.rl-demo-cluster.credentials.postgresql.acid.zalan.do
+              key: password
+
+        - name: "DATA_SOURCE_NAME"
+          value: "postgresql://prometheus:$(PROMETHEUS_DB_PASSWORD)@$(POD_NAME):5432/postgres?sslmode=require"
