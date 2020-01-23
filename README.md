@@ -24,6 +24,16 @@ $ gcloud services enable container.googleapis.com --project rl-poc
 
 The manifest files in this repo are set up to install the operator in the "default" namespace, and to listen *only* for postgresqls in that namespace. Please see https://postgres-operator.readthedocs.io/en/latest/administrator/#select-the-namespace-to-deploy-to for details if you want to change that. 
 
+For a production setup, we recommend installing the operator in it's own namespace, "postgres-operator" for instance:
+
+* https://postgres-operator.readthedocs.io/en/latest/administrator/#select-the-namespace-to-deploy-to
+
+In that case it'd need to be told what namespaces to listen to:
+
+* https://postgres-operator.readthedocs.io/en/latest/administrator/#specify-the-namespace-to-watch
+
+
+
 # Set up the operator
 
 ```
