@@ -28,7 +28,7 @@ root@krorvik:~/temp# cp wal-g /usr/local/bin/
 
 ## Configure WAL-G
 
-Create the default config file for wal-g, in /var/lib/postgresql/.walg.json. As postgres:
+Create the default config file for wal-g, in /var/lib/postgresql/.walg.json on debian, and /var/lib/pgsql/.walg.json on redhat . As postgres:
 
 ```/var/lib/postgresql/.walg.json
 {
@@ -38,7 +38,7 @@ Create the default config file for wal-g, in /var/lib/postgresql/.walg.json. As 
 }
 ```
 
-Make sure you replace the correct bucketname and clustername.
+Make sure you replace the correct bucketname and clustername. Adjust the path to credentials if you are on redhat. 
 
 Place the json file that you downloaded when creating the service account in the path given in GOOGLE_APPLICATION_CREDENTIALS. 
 
@@ -176,4 +176,6 @@ At this point, a full basebackup is present in our gs bucket.
 
 ## Setting up the actual k8s cluster
 
-Setting up a postgres-operated cluster now becomes as easy as the example rldemo-restore.yaml. 
+Setting up a postgres-operated cluster now becomes as easy as the example rl-demo-restore.yaml. 
+
+
