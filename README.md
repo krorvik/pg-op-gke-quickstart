@@ -83,6 +83,19 @@ Change the numberOfInstances, and save/quit. Operator will change the standby co
 $ kubectl delete postgresql rl-demo-cluster
 ```
 
+Now, you might not be able to delete a cluster this way if it never completed initialization. That is valid also if the cluster pods were never deemed ready. In that case, you might want to delete all objects manually. 
+
+Look for:
+
+* postgresqls
+* statefulsets
+* services
+* secrets
+* endpoints
+* pvc
+
+All will be prefixed with the name of the postgresql, so they're relatively easy to find. 
+
 ## Restore a cluster
 
 ```console
